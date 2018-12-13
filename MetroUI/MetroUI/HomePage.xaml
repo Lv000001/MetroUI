@@ -1,0 +1,111 @@
+﻿<Page x:Class="MetroUI.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MetroUI"
+      xmlns:oxy="http://oxyplot.org/wpf"
+      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="HomePage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="160*"/>
+            <RowDefinition Height="120"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="156*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="1" Text="Server Activity" VerticalAlignment="Center" Margin="0,22,0,1" FontSize="24" Foreground="White" FontFamily="Microsoft YaHei" />
+            <TextBlock Grid.Column="1" Grid.Row="1" Text="May 11th - 16th" VerticalAlignment="Top" Foreground="#FFC7C7C7" FontSize="11" Grid.ColumnSpan="3"/>
+            <Border Grid.Column="2" Margin="5 22 15 5" BorderThickness="1" Height="27" CornerRadius="14" BorderBrush="#FFACACAC">
+                <ComboBox  Margin="7 0 7 2" BorderThickness="0" Background="{x:Null}" SelectedIndex="0">
+                    <ComboBoxItem Content="Type:Requests"/>
+                </ComboBox>
+            </Border>
+
+            <Border Grid.Column="3" Margin="15 22 5 5" BorderThickness="1" Height="27" CornerRadius="14" BorderBrush="#FFACACAC">
+                <ComboBox Margin="7 0 7 2" BorderThickness="0" Background="{x:Null}" SelectedIndex="0">
+                    <ComboBoxItem Content="Status:Active"/>
+                </ComboBox>
+            </Border>
+
+
+        </Grid>
+
+        <oxy:Plot  Grid.Row="1" Background="#00FFFFFF" TextColor="#FFB2A2A2" PlotAreaBorderColor="#FFB8B8B8" Margin="20" 
+                               LegendPlacement="Inside" LegendMargin="0">
+            <oxy:Plot.Axes >
+                <oxy:LinearAxis Position="Left" />
+                <oxy:DateTimeAxis Position="Bottom"  IntervalType="Seconds" AxislineStyle="Solid" ExtraGridlineColor="#FFF12A2A" MajorGridlineColor="#40FB1818" />
+            </oxy:Plot.Axes>
+
+            <!--参考线-->
+            <!--<oxy:Plot.Annotations >
+                   <oxy:LineAnnotation Type="Horizontal" Color="Red" Y="80" ></oxy:LineAnnotation>
+             </oxy:Plot.Annotations>-->
+
+            <oxy:Plot.Series >
+                <oxy:LineSeries ItemsSource="{Binding SingleVehicleMonitorModel.SpeedData}" 
+                                DataFieldX="Date" DataFieldY="Value" Title="速度" 
+                                StrokeThickness="1"  Color="#FF3DFF1F" 
+                                MarkerType="Diamond" TrackerFormatString="时间: {2:yyyy-MM-dd HH:mm:ss}&#x0a;速度: {4}km/h">
+                </oxy:LineSeries>
+            </oxy:Plot.Series>
+        </oxy:Plot>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="302*"/>
+                <ColumnDefinition Width="391*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="12*"/>
+                    <RowDefinition Height="12*"/>
+                    <RowDefinition Height="12*"/>
+                    <RowDefinition Height="12*"/>
+                    <RowDefinition Height="30*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="150*"/>
+                    <ColumnDefinition Width="57*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="Total Users" VerticalAlignment="Center" Foreground="White" />
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="Requests" VerticalAlignment="Center" Foreground="White"/>
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="Timeouts" VerticalAlignment="Center" Foreground="White"/>
+                <TextBlock Grid.Column="0" Grid.Row="3" Text="Latches" VerticalAlignment="Center" Foreground="White"/>
+
+                <ProgressBar BorderThickness="0" Grid.Column="1" Grid.Row="0" Height="5" Value="50" Background="#3FFFFFFF" Foreground="#FFF30E0E"/>
+                <ProgressBar BorderThickness="0" Grid.Column="1" Grid.Row="1" Height="5" Value="30" Background="#3FFFFFFF" Foreground="#FF2EFF00"/>
+                <ProgressBar BorderThickness="0" Grid.Column="1" Grid.Row="2" Height="5" Value="70" Background="#3FFFFFFF" Foreground="#FF0B59FF"/>
+                <ProgressBar BorderThickness="0" Grid.Column="1" Grid.Row="3" Height="5" Value="80" Background="#3FFFFFFF" Foreground="#FFFF2DCF"/>
+
+
+                <TextBlock Grid.Column="2" Grid.Row="0" Margin="15 0 0 0"  Text="1304" VerticalAlignment="Center" Foreground="White" />
+                <TextBlock Grid.Column="2" Grid.Row="1" Margin="15 0 0 0"  Text="2399" VerticalAlignment="Center" Foreground="White"/>
+                <TextBlock Grid.Column="2" Grid.Row="2" Margin="15 0 0 0"  Text="895" VerticalAlignment="Center" Foreground="White"/>
+                <TextBlock Grid.Column="2" Grid.Row="3" Margin="15 0 0 0"  Text="2492" VerticalAlignment="Center" Foreground="White"/>
+            </Grid>
+
+  
+
+        </Grid>
+    </Grid>
+</Page>
